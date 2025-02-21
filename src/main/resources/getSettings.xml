@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:es="http://es.ir-tech.ru">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <es:EsMunicipalityRequest>
+            <es:MunicipalityId>
+                <es:Okato>65476000000</es:Okato>
+            </es:MunicipalityId>
+        </es:EsMunicipalityRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
