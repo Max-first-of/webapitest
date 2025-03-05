@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ParamTest extends BaseTest {
-    String es_host = System.getProperty("ES_HOST");
+    String es_host = System.getenv("ES_HOST");
     @DisplayName("WowTest")
     @Test
     public void getParamFromJenkinsTest(){
