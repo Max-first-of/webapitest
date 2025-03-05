@@ -3,6 +3,7 @@ package back_test.base_tests;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
 public class BaseTest {
@@ -12,6 +13,10 @@ public class BaseTest {
     public static void setUp(){
         RestAssured.baseURI = BASE_URI;
         RestAssured.requestSpecification = setRequestSpecification();
+    }
+    @AfterAll
+    public static void afterAll(){
+
     }
     public static RequestSpecification setRequestSpecification(){
         RequestSpecBuilder builder = new RequestSpecBuilder();
