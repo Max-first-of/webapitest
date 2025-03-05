@@ -19,7 +19,7 @@ public class SoapBodyRequestBuilder {
     private Document document;
     private String filePath;
     public SoapBodyRequestBuilder(String fileName){
-        filePath = "src\\main\\resources\\" + fileName;
+        filePath = "src" + File.separator+"main"+File.separator+"resources"+File.separator + fileName;
         try {
             File xmlFile = new File(filePath);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -32,7 +32,7 @@ public class SoapBodyRequestBuilder {
     }
     public SoapBodyRequestBuilder addTagValue(String tag, String value){
         try {
-            File xmlFile = new File("src\\main\\resources\\getSettings.xml");
+            File xmlFile = new File("src"+File.separator+"main"+File.separator+"resources"+File.separator+"getSettings.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
