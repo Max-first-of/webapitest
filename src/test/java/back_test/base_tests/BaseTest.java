@@ -1,5 +1,6 @@
 package back_test.base_tests;
 
+import io.qameta.allure.Attachment;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
@@ -25,5 +26,9 @@ public class BaseTest {
                 .addHeader("SOAPAction", "GetSettings");
         RequestSpecification requestSpecification = builder.build();
         return requestSpecification;
+    }
+    @Attachment(value = "data", type = "text/xml", fileExtension = ".xml")
+    public String addXmlAttach(String attach){
+        return attach;
     }
 }

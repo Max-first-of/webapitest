@@ -42,7 +42,7 @@ public class SoapDemoTests extends BaseTest {
         builder
                 .addTagValue("es:Okato", "1000")
                 .addTagValue("olo", "11");
-
+        addXmlAttach(builder.build());
         step("Выполняем запрос");
         Response response = given()
                 .body(builder.build())
