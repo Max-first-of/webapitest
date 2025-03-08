@@ -44,7 +44,7 @@ public class SoapDemoTests extends BaseTest {
         SoapBodyRequestBuilder builder = new SoapBodyRequestBuilder("getSettings.xml");
         builder
                 .addTagValue("es:Okato", "1000");
-        addXmlAttach("Тело запроса", "application/xml", builder.build());
+        addXmlAttach("Тело запроса", builder.build());
         step("Выполняем запрос");
         Response response = given()
                 .body(builder.build())
@@ -54,7 +54,7 @@ public class SoapDemoTests extends BaseTest {
                 .statusCode(200)
                 .extract().response();
         String s = response.getBody().asString();
-        addXmlAttach("Ответ", "application/xml", s);
+        addXmlAttach("Ответ", s);
         XmlPath xmlPath = new XmlPath(s);
 
         step("Проверяем ответ");
@@ -73,8 +73,10 @@ public class SoapDemoTests extends BaseTest {
     @ParameterizedTest
     @Tags({@Tag("SOAP"), @Tag("SMOKE")})
     @ValueSource(ints = {1, 3, 5, -3, 15, Integer.MAX_VALUE})
-    public void test2ParamTest(){
-
+    public void test2ParamTest(int value){
+        assertThat(value/2)
+                .as("Число четное")
+                .isEqualTo(0);
     }
     //Параметризованный тест, данные берутся из файла
     @ParameterizedTest

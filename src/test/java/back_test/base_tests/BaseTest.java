@@ -32,7 +32,7 @@ public class BaseTest {
         return requestSpecification;
     }
     @Step("Вложение")
-    public void addXmlAttach(String name, String type, String attach){
-        Allure.addAttachment(name, type, attach);
+    public void addXmlAttach(String name, String attach){
+        Allure.addAttachment(name, "application/xml", attach);
     }
 }
