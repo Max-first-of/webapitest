@@ -7,6 +7,8 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
+import java.nio.charset.StandardCharsets;
+
 public class BaseTest {
     public static String BASE_URI = "http://demoes.ir-tech.ru/Other/ES2_ODO/Web/Services/PreschoolInquiryWcfService.svc";
 
@@ -27,8 +29,8 @@ public class BaseTest {
         RequestSpecification requestSpecification = builder.build();
         return requestSpecification;
     }
-    @Attachment(value = "data", type = "text/xml", fileExtension = ".xml")
-    public String addXmlAttach(String attach){
-        return attach;
+    @Attachment(value = "data", type = "application/xml", fileExtension = ".xml")
+    public byte[] addXmlAttach(String attach){
+        return attach.getBytes(StandardCharsets.UTF_8);
     }
 }
