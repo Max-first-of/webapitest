@@ -31,6 +31,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@DisplayName("SOAP тесты")
 public class SoapDemoTests extends BaseTest {
 
     @DisplayName("Тест 1. Получаем настройки")
