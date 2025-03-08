@@ -36,7 +36,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @DisplayName("SOAP тесты")
 public class SoapDemoTests extends BaseTest {
     String someOutsideVariable = System.getenv("JENKINS_VAR");
-    @DisplayName("Тест 1")
+    @DisplayName("Тест метода GetSettings")
     @Tags({@Tag("SOAP"), @Tag("SMOKE")})
     @Test
     public void test1GetOrg(){
@@ -64,7 +64,7 @@ public class SoapDemoTests extends BaseTest {
         XmlPath xmlPath = new XmlPath(s);
 
         String dateOfCalculationAge = xmlPath.get("DateOfCalculationAge").toString().substring(0,10);
-        String maxCountWishPreschools = xmlPath.get("MaxCountWishPreschools");
+        var maxCountWishPreschools = xmlPath.get("MaxCountWishPreschools");
 
         step("Проверяем данные", ()->{
             assertThat(dateOfCalculationAge)
@@ -72,7 +72,7 @@ public class SoapDemoTests extends BaseTest {
                     .isEqualTo("2021-09-02");
         });
     }
-    @DisplayName("Получаем данные из Jenkins")
+    @DisplayName("Тест с использованием данных из Jenkins")
     @Test
     public void getParamFromJenkinsTest(){
         assertThat(someOutsideVariable).isEqualTo("4");
