@@ -3,6 +3,7 @@ package back_test.soap_tests;
 import back_test.base_tests.BaseTest;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
+import io.restassured.http.ContentType;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
 import jakarta.xml.bind.JAXBContext;
@@ -53,6 +54,7 @@ public class SoapDemoTests extends BaseTest {
                 .statusCode(200)
                 .extract().response();
         String s = response.asString();
+        addXmlAttach("Ответ", "application/xml", s);
         XmlPath xmlPath = new XmlPath(s);
 
         step("Проверяем ответ");
