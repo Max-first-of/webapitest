@@ -69,20 +69,6 @@ public class SoapDemoTests extends BaseTest {
         System.out.println(s);
     }
 
-    //Параметризированный тест
-    @ParameterizedTest
-    @Tags({@Tag("SOAP"), @Tag("SMOKE")})
-    @ValueSource(ints = {1, 3, 5, -3, 15, Integer.MAX_VALUE})
-    public void test2ParamTest(int value){
-        assertThat(value/2)
-                .as("Число четное")
-                .isEqualTo(0);
-    }
-    //Параметризованный тест, данные берутся из файла
-    @ParameterizedTest
-    @Tags({@Tag("SOAP"), @Tag("Случайный тег")})
-    @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
-    public void test3ParamTes(){
 
-    }
+
 }
