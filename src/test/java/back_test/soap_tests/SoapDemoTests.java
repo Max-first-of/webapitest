@@ -40,8 +40,7 @@ public class SoapDemoTests extends BaseTest {
         step("Подготовка данных");
         SoapBodyRequestBuilder builder = new SoapBodyRequestBuilder("getSettings.xml");
         builder
-                .addTagValue("es:Okato", "1000")
-                .addTagValue("olo", "11");
+                .addTagValue("es:Okato", "1000");
         addXmlAttach(builder.build());
         step("Выполняем запрос");
         Response response = given()
