@@ -23,11 +23,12 @@ public class BaseTest {
     public static void afterAll(){
 
     }
+    //Устанавливаем спецификация по умолчанию
     public static RequestSpecification setRequestSpecification(){
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder
-                .addHeader("Content-Type", "text/xml; charset=utf-8")
-                .addHeader("SOAPAction", "GetSettings");
+                .addHeader("Content-Type", "text/xml; charset=utf-8");
+                //.addHeader("SOAPAction", "GetSettings");
         RequestSpecification requestSpecification = builder.build();
         return requestSpecification;
     }

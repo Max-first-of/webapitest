@@ -36,7 +36,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @DisplayName("SOAP тесты")
 public class SoapDemoTests extends BaseTest {
     String someOutsideVariable = System.getenv("JENKINS_VAR");
-    @DisplayName("Тест 1. Получаем настройки")
+    @DisplayName("Тест 1")
     @Tags({@Tag("SOAP"), @Tag("SMOKE")})
     @Test
     public void test1GetOrg(){
@@ -44,29 +44,36 @@ public class SoapDemoTests extends BaseTest {
         SoapBodyRequestBuilder builder = new SoapBodyRequestBuilder("getSettings.xml");
         builder
                 .addTagValue("es:Okato", "1000");
+
         addXmlAttach("Тело запроса", builder.build());
+
         step("Выполняем запрос");
         Response response = given()
+                .header("SOAPAction", "GetSettings")//Название метода, который вызываем
                 .body(builder.build())
                 .when()
                 .post("")
                 .then()
                 .statusCode(200)
                 .extract().response();
+
+        step("Работаем с ответом");
         String s = response.getBody().asString();
         addXmlAttach("Ответ", s);
+
         XmlPath xmlPath = new XmlPath(s);
 
-        step("Проверяем ответ");
         String dateOfCalculationAge = xmlPath.get("DateOfCalculationAge").toString().substring(0,10);
-        var maxCountWishPreschools = xmlPath.get("MaxCountWishPreschools");
+        String maxCountWishPreschools = xmlPath.get("MaxCountWishPreschools");
 
         step("Проверяем данные", ()->{
             assertThat(dateOfCalculationAge)
                     .as("Дата равны")
                     .isEqualTo("2021-09-01");
+            assertThat(maxCountWishPreschools)
+                    .as("Что-то написали")
+                    .isBetween("9", "10");
         });
-        System.out.println(s);
     }
     @DisplayName("Получаем данные из Jenkins")
     @Test
