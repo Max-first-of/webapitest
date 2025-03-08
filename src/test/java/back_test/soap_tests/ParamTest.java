@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@DisplayName("Параметризированные тесты")
 public class ParamTest extends BaseTest {
     String es_host = System.getenv("ES_HOST");
-    @DisplayName("WowTest")
+    @DisplayName("Получаем данные из Jenkins")
     @Test
-    @Step("Шаг 1: Проверка сложения")
     public void getParamFromJenkinsTest(){
         assertThat(es_host).isEqualTo("4");
         System.out.println(es_host);

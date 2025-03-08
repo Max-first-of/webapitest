@@ -1,6 +1,7 @@
 package back_test.soap_tests;
 
 import back_test.base_tests.BaseTest;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
@@ -43,6 +44,7 @@ public class SoapDemoTests extends BaseTest {
         builder
                 .addTagValue("es:Okato", "1000");
         addXmlAttach(builder.build());
+        Allure.addAttachment("Request", "application/xml", builder.build());
         step("Выполняем запрос");
         Response response = given()
                 .body(builder.build())
