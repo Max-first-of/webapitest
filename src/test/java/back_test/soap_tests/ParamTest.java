@@ -27,7 +27,7 @@ public class ParamTest extends BaseTest {
     //Параметризованный тест, данные берутся из файла
     @DisplayName("Данные берутся из data.csv")
     @ParameterizedTest
-    @Tags({@Tag("SOAP"), @Tag("Случайный тег")})
+    @Tags({@Tag("SOAP"), @Tag("Ещё_тег")})
     @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
     public void test3ParamTes(String input, String expected){
         assertThat(input)
