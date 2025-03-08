@@ -59,7 +59,7 @@ public class SoapDemoTests extends BaseTest {
 
         step("Работаем с ответом");
         String s = response.getBody().asString();
-        addXmlAttach("Ответ", s);
+        AddXmlAttachFormat("Ответ", s);
 
         XmlPath xmlPath = new XmlPath(s);
 

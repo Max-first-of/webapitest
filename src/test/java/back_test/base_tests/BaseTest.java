@@ -9,6 +9,14 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 
 public class BaseTest {
@@ -34,7 +42,34 @@ public class BaseTest {
     }
     @Step("Вложение")
     public void addXmlAttach(String name, String attach){
-        byte[] bytesAttach = attach.getBytes(StandardCharsets.UTF_8);
         Allure.addAttachment(name, "application/xml", attach);
+    }
+    public void AddXmlAttachFormat(String name, String attach){
+        try {
+            // Создаем источник для неформатированного XML
+            StringReader stringReader = new StringReader(attach);
+            StreamSource source = new StreamSource(stringReader);
+
+            // Создаем StringWriter для отформатированного XML
+            StringWriter stringWriter = new StringWriter();
+            StreamResult result = new StreamResult(stringWriter);
+
+            // Создаем объект Transformer для форматирования
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+
+            // Устанавливаем параметры для форматирования (отступы)
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes"); // Включаем отступы
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2"); // Устанавливаем размер отступа (2 пробела)
+
+            // Преобразуем XML с отступами
+            transformer.transform(source, result);
+
+            // Возвращаем отформатированную строку
+           attach = stringWriter.toString();
+        }catch (Exception e){
+            return;
+        }
+        Allure.addAttachment(name, attach);
     }
 }
