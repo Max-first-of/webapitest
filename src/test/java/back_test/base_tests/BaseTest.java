@@ -70,6 +70,6 @@ public class BaseTest {
         }catch (Exception e){
             return;
         }
-        Allure.addAttachment(name, attach);
+        Allure.addAttachment(name,"application/xml", attach);
     }
 }
