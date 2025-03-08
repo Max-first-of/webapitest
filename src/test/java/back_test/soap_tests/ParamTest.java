@@ -13,12 +13,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DisplayName("Параметризированные тесты")
 public class ParamTest extends BaseTest {
-    String someOutsideVariable = System.getenv("JENKINS_VAR");
-    @DisplayName("Получаем данные из Jenkins")
-    @Test
-    public void getParamFromJenkinsTest(){
-        assertThat(someOutsideVariable).isEqualTo("4");
-    }
 
     //Параметризированный тест
     @DisplayName("Данные берутся из @ValueSource")

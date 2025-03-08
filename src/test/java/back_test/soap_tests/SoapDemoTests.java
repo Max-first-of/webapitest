@@ -35,7 +35,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DisplayName("SOAP тесты")
 public class SoapDemoTests extends BaseTest {
-
+    String someOutsideVariable = System.getenv("JENKINS_VAR");
     @DisplayName("Тест 1. Получаем настройки")
     @Tags({@Tag("SOAP"), @Tag("SMOKE")})
     @Test
@@ -68,7 +68,9 @@ public class SoapDemoTests extends BaseTest {
         });
         System.out.println(s);
     }
-
-
-
+    @DisplayName("Получаем данные из Jenkins")
+    @Test
+    public void getParamFromJenkinsTest(){
+        assertThat(someOutsideVariable).isEqualTo("4");
+    }
 }
