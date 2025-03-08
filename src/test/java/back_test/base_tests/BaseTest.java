@@ -34,6 +34,7 @@ public class BaseTest {
     }
     @Step("Вложение")
     public void addXmlAttach(String name, String attach){
+        byte[] bytesAttach = attach.getBytes(StandardCharsets.UTF_8);
         Allure.addAttachment(name, "application/xml", attach);
     }
 }
