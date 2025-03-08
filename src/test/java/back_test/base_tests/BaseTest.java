@@ -1,6 +1,8 @@
 package back_test.base_tests;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
@@ -29,8 +31,8 @@ public class BaseTest {
         RequestSpecification requestSpecification = builder.build();
         return requestSpecification;
     }
-    @Attachment(value = "data", type = "application/xml", fileExtension = ".xml")
-    public byte[] addXmlAttach(String attach){
-        return attach.getBytes(StandardCharsets.UTF_8);
+    @Step("Вложение")
+    public void addXmlAttach(String name, String type, String attach){
+        Allure.addAttachment(name, type, attach);
     }
 }

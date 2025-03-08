@@ -43,8 +43,7 @@ public class SoapDemoTests extends BaseTest {
         SoapBodyRequestBuilder builder = new SoapBodyRequestBuilder("getSettings.xml");
         builder
                 .addTagValue("es:Okato", "1000");
-        addXmlAttach(builder.build());
-        Allure.addAttachment("Request", "application/xml", builder.build());
+        addXmlAttach("Тело запроса", "application/xml", builder.build());
         step("Выполняем запрос");
         Response response = given()
                 .body(builder.build())
