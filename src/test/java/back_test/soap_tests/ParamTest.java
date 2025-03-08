@@ -1,7 +1,6 @@
 package back_test.soap_tests;
 
 import back_test.base_tests.BaseTest;
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
@@ -14,11 +13,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DisplayName("Параметризированные тесты")
 public class ParamTest extends BaseTest {
-    String someOutsideVarrible = System.getenv("JENKINS_VAR");
+    String someOutsideVariable = System.getenv("JENKINS_VAR");
     @DisplayName("Получаем данные из Jenkins")
     @Test
     public void getParamFromJenkinsTest(){
-        assertThat(someOutsideVarrible).isEqualTo("4");
+        assertThat(someOutsideVariable).isEqualTo("4");
     }
 
     //Параметризированный тест
@@ -32,10 +31,12 @@ public class ParamTest extends BaseTest {
                 .isEqualTo(0);
     }
     //Параметризованный тест, данные берутся из файла
+    @DisplayName("Данные берутся из data.csv")
     @ParameterizedTest
     @Tags({@Tag("SOAP"), @Tag("Случайный тег")})
     @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
-    public void test3ParamTes(){
-
+    public void test3ParamTes(String input, String output){
+        assertThat(input)
+                .isEqualTo(output);
     }
 }
