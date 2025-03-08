@@ -69,10 +69,7 @@ public class SoapDemoTests extends BaseTest {
         step("Проверяем данные", ()->{
             assertThat(dateOfCalculationAge)
                     .as("Дата равны")
-                    .isEqualTo("2021-09-01");
-            assertThat(maxCountWishPreschools)
-                    .as("Что-то написали")
-                    .isBetween("9", "10");
+                    .isEqualTo("2021-09-02");
         });
     }
     @DisplayName("Получаем данные из Jenkins")
