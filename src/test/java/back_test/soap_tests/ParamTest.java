@@ -35,8 +35,8 @@ public class ParamTest extends BaseTest {
     @ParameterizedTest
     @Tags({@Tag("SOAP"), @Tag("Случайный тег")})
     @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
-    public void test3ParamTes(String input, String output){
+    public void test3ParamTes(String input, String expected){
         assertThat(input)
-                .isEqualTo(output);
+                .isEqualTo(expected);
     }
 }
