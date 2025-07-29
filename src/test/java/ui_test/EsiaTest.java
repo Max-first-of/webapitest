@@ -18,10 +18,6 @@ public class EsiaTest {
     String login, password;
     @BeforeAll
     public void setUp(){
-        Configuration.remote = "http://localhost:4444/wd/hub";
-        Configuration.baseUrl ="http://localhost:4444";
-        Configuration.browserCapabilities = new ChromeOptions()
-                .addArguments("--no-sandbox");
 
     }
     @Test
