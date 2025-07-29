@@ -17,7 +17,7 @@ public class EsiaTest {
     String login, password;
     @BeforeAll
     public void setUp(){
-        Configuration.config().proxyPort(4444);
+        Configuration.remote = "http://localhost:4444/wd/hub";
     }
     @Test
     @DisplayName("Успешная авторизация с логин паролем")
