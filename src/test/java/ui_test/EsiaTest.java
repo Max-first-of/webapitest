@@ -18,6 +18,7 @@ public class EsiaTest {
     @BeforeAll
     public void setUp(){
         Configuration.remote = "http://localhost:4444/wd/hub";
+        Configuration.baseUrl ="http://localhost:4444";
     }
     @Test
     @DisplayName("Успешная авторизация с логин паролем")
