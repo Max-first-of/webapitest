@@ -18,7 +18,8 @@ public class EsiaTest {
     String login, password;
     @BeforeAll
     public void setUp(){
-
+        Configuration.browserCapabilities = new ChromeOptions()
+                .addArguments("--no-sandbox");
     }
     @Test
     @DisplayName("Успешная авторизация с логин паролем")
