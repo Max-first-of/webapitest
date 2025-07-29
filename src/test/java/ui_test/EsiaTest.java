@@ -8,7 +8,7 @@ import ui_page.LoginPage;
 
 import static com.codeborne.selenide.Selenide.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
+@DisplayName("Тестирование авторизации ЕСИА")
 public class EsiaTest {
     String host = "https://svcdev-beta.test.gosuslugi.ru/600426/1/form";
     String login, password;
