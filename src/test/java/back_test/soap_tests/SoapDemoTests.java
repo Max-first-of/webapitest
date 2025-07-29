@@ -1,6 +1,7 @@
 package back_test.soap_tests;
 
 import back_test.base_tests.BaseTest;
+import config.enums.SoapMethods;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;;
 import model.SoapBodyRequestBuilder;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.RequestHelper;
-
+import config.enums.SoapMethods.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -69,7 +70,7 @@ public class SoapDemoTests extends BaseTest {
 
         step("Выполняем запрос",()->{
         });
-        Response response = RequestHelper.soapRequest("", body);
+        Response response = RequestHelper.soapRequest(reg.I.value, body);
 
         step("Проверяем ответ");
         assertThat(someOutsideVariable).isEqualTo("4");
