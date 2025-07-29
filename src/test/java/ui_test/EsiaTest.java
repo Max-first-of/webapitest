@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
 import ui_page.LoginPage;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -19,6 +20,9 @@ public class EsiaTest {
     public void setUp(){
         Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.baseUrl ="http://localhost:4444";
+        Configuration.browserCapabilities = new ChromeOptions()
+                .addArguments("--no-sandbox");
+
     }
     @Test
     @DisplayName("Успешная авторизация с логин паролем")
