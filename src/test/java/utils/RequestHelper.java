@@ -1,6 +1,8 @@
 package utils;
 
 import io.qameta.allure.Step;
+import io.restassured.response.Response;
+import model.SoapBodyRequestBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -13,11 +15,11 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
+
+import static io.restassured.RestAssured.given;
 
 public class RequestHelper {
     public static String ConvertXmlToString(String fileName){
@@ -55,5 +57,17 @@ public class RequestHelper {
         }catch (Exception ex){
             System.out.println(ex);
         }
+    }
+    @Step("Выполняем запрос {}")
+    public static Response soapRequest(String method, SoapBodyRequestBuilder body){
+        Response response = given()
+                .header("SOAPAction", method)//Название метода, который вызываем
+                .body(body)
+                .when()
+                .post("")
+                .then()
+                .statusCode(200)
+                .extract().response();
+        return response;
     }
 }

@@ -7,6 +7,7 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
 import javax.xml.transform.OutputKeys;
@@ -44,6 +45,7 @@ public class BaseTest {
     public void addXmlAttach(String name, String attach){
         Allure.addAttachment(name, "application/xml", attach);
     }
+
     public void AddXmlAttachFormat(String name, String attach){
         try {
             // Создаем источник для неформатированного XML
@@ -71,5 +73,9 @@ public class BaseTest {
             return;
         }
         Allure.addAttachment(name,"application/xml", attach);
+    }
+    @AfterEach
+    public void afterEach(){
+        //Сюда добавим вложения
     }
 }

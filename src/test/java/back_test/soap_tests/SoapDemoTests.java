@@ -1,33 +1,14 @@
 package back_test.soap_tests;
 
 import back_test.base_tests.BaseTest;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
-import io.restassured.http.ContentType;
 import io.restassured.path.xml.XmlPath;
-import io.restassured.response.Response;
-import jakarta.xml.bind.JAXBContext;
+import io.restassured.response.Response;;
 import model.SoapBodyRequestBuilder;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import utils.RequestHelper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.StringWriter;
+import utils.RequestHelper;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -36,18 +17,23 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @DisplayName("SOAP тесты")
 public class SoapDemoTests extends BaseTest {
     String someOutsideVariable = System.getenv("JENKINS_VAR");
+    String soapHost = "https://demoes.ir-tech.ru/Other/ES2_ODO/Web/Services/PreschoolInquiryWcfService.svc?wsdl";
+
     @DisplayName("Тест метода GetSettings")
     @Tags({@Tag("SOAP"), @Tag("SMOKE")})
     @Test
     public void test1GetOrg(){
         step("Подготовка данных");
+
         SoapBodyRequestBuilder builder = new SoapBodyRequestBuilder("getSettings.xml");
         builder
                 .addTagValue("es:Okato", "1000");
 
         addXmlAttach("Тело запроса", builder.build());
 
-        step("Выполняем запрос");
+        step("Выполняем запрос",()->{
+
+        });
         Response response = given()
                 .header("SOAPAction", "GetSettings")//Название метода, который вызываем
                 .body(builder.build())
@@ -73,8 +59,19 @@ public class SoapDemoTests extends BaseTest {
         });
     }
     @DisplayName("Тест с использованием данных из Jenkins")
+    @Tag("ONE")
     @Test
     public void getParamFromJenkinsTest(){
+        SoapBodyRequestBuilder body;
+        step("Подготовка данных");
+        body = new SoapBodyRequestBuilder("");
+        body.addTagValue("", "");
+
+        step("Выполняем запрос",()->{
+        });
+        Response response = RequestHelper.soapRequest("", body);
+
+        step("Проверяем ответ");
         assertThat(someOutsideVariable).isEqualTo("4");
     }
 }
