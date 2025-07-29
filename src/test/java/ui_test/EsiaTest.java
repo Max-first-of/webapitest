@@ -1,6 +1,9 @@
 package ui_test;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import model.BuildTags;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -12,6 +15,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class EsiaTest {
     String host = "https://svcdev-beta.test.gosuslugi.ru/600426/1/form";
     String login, password;
+    @BeforeAll
+    public void setUp(){
+        Configuration.config().proxyPort(4444);
+    }
     @Test
     @DisplayName("Успешная авторизация с логин паролем")
     @Tag(BuildTags.UI)
